@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        h1{
+            text-align: center;
+            font-size: 2.3rem;
+        }
+        section{
+            background-color:aqua;
+            height:100vh;
+
+        }
+        .form{
+
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 7.5%;
+          
+        }
+        .form form input{
+            width:80%;
+            padding:6px;
+            border-radius: 5px;
+            margin:5px;
+            border:2px solid red;
+           
+        }
+        .form form {
+            width:400px;
+           
+        }
+        .btnsubmit{
+            background-color: brown;
+            color:white;
+            border-radius: 5px;
+            padding:2px 6px;
+            font-size: 15px;
+            border:2px solid black;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <section id="register">
+        <h1 class="center">Employee Registration form</h1>
+       <div class="form">
+        <form action="/register" method="post">
+           <div class="items">
+            <label for="name">name</label><br>
+            <input type="name"name="inputname" placeholder="enter your name">
+           </div>
+
+           <div class="items">
+            <label for="age">age</label><br>
+            <input type="age"name="inputage" placeholder="enter yourage">
+           </div>
+          
+           <div class="items">
+            <label for="email">Email</label><br>
+            <input type="email" name="inputemail" placeholder="enter your email">
+           </div>
+           <div class="items">
+            <label for="phone">Phone</label><br>
+            <input type="number" name="inputphone" placeholder="enter your number">
+           </div>
+           <div class="items">
+            <label for="password">password</label><br>
+            <input type="password" name="inputpassword"placeholder="enter your password">
+           </div>
+           <div class="items">
+            <label for="password">confirm password</label><br>
+            <input type="password" name="inputcnfpassword"placeholder="confirm password">
+           </div>
+           <div class="items">
+            <label for="password">gender</label><br>
+            <input name="gender" type="radio">male
+            <input name='gender' type="radio">female
+           </div>
+          <input type="submit" class="btnsubmit" value="register">
+
+        </form>
+       </div>
+
+    </section>
+
+    
+</body>
+</html>
