@@ -35,30 +35,50 @@ app.get("/login", (req, res) => {
 
 
 app.post("/register", async (req, res) => {
-    console.log(req.body);
-    // const password = req.body.inputpassword;
-    // const cpassword = req.body.inputcnfpassword;
-    // if (password === cpassword) {
-    //     let data = new registermodel({
-    //         name: req.body.inputname,
-    //         age: req.body.inputage,
-    //         email: req.body.inputemail,
-    //         phone: req.body.inputphone,
-    //         gender: req.body.gender,
-    //         password: req.body.inputpassword,
-    //         confirmpassword: req.body.inputcnfpassword
+  
+    const password = req.body.inputpassword;
+    const cpassword = req.body.inputcnfpassword;
+    if (password === cpassword) {
+        let data = new registermodel({
+            name: req.body.inputname,
+            age: req.body.inputage,
+            email: req.body.inputemail,
+            phone: req.body.inputphone,
+            gender: req.body.gender,
+            password: req.body.inputpassword,
+            confirmpassword: req.body.inputcnfpassword
 
 
-    //     });
+        });
        
-    //     let result = await data.save();
-    //     res.send(result);
-//     }
-//     else
-//         res.send("password is not matching");
+        let result = await data.save();
+        res.send("<h1>Thanks for registering......");
+    }
+    else
+        res.send("password not matched");
 
  }
 );
+
+// for loin purpose
+app.post("/login",async (req,res)=>{
+    const lname = req.body.inputname;
+    const lpassword = req.body.pass;
+    console.log("form name :"+lname);
+    console.log("form password 1:"+lpassword); 
+
+    let data = await  registermodel.findOne({name:lname});
+   
+    res.send(data);
+
+   
+    
+   
+
+    
+    
+});
+
 
 app.listen(4500, () => {
     console.log("server started");

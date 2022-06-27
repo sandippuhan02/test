@@ -12,14 +12,12 @@ const registersSchema = new mongoose.Schema({
 
     },
     gender:{
-        type:String,
-        required:true,
-    
+        type:String
     },
     phone:{
         type:Number,
         required:true,
-        unique:true
+        
     },
     age:{
         type:Number,
