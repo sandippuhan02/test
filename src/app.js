@@ -65,11 +65,20 @@ app.post("/login",async (req,res)=>{
     const lname = req.body.inputname;
     const lpassword = req.body.pass;
     console.log("form name :"+lname);
-    console.log("form password 1:"+lpassword); 
+    console.log("login form password 1:"+lpassword); 
 
     let data = await  registermodel.findOne({name:lname});
+    console.log("database password :"+data.password);
+     if(data.password === lpassword)
+     {
+        console.log("sucess");
+     }
+     else{
+
+         res.send("check password");
+     }
+
    
-    res.send(data);
 
    
     
