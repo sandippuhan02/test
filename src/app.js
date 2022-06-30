@@ -52,7 +52,12 @@ app.post("/register", async (req, res) => {
         });
        
         let result = await data.save();
-        res.send("<h1>Thanks for registering......");
+        // res.send(result);
+        // console.log(result);
+       
+        res.render("index",{result});
+        
+       
     }
     else
         res.send("password not matched");
@@ -69,7 +74,7 @@ app.post("/login",async (req,res)=>{
 
     let data = await  registermodel.findOne({name:lname});
     console.log("database password :"+data.password);
-     if(data.password === lpassword)
+     if(data.password === parseInt(lpassword))
      {
         console.log("sucess");
      }
@@ -89,6 +94,6 @@ app.post("/login",async (req,res)=>{
 });
 
 
-app.listen(4500, () => {
+app.listen(3000, () => {
     console.log("server started");
 });
