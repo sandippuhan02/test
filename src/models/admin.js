@@ -35,5 +35,5 @@ const registersSchema = new mongoose.Schema({
 
     }
 });
-module.exports = mongoose.model("registers", registersSchema)
+module.exports = mongoose.model("admins", adminsSchema);
  

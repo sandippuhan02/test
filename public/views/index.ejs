@@ -6,10 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .red{
-            border:3px solid black;
+        .new{
+           background-color: rgb(215, 73, 92);
             padding:10px;
             text-align: center;
+            width:100vw;
+            height:100vh;
+            color:aliceblue;
+        }
+        .yellow{
+            background-color: darkorange;
+            color:blanchedalmond;
+            text-align: center;
+        }
+        .btn{
+            background-color: blue;
+            padding:6px;
+            color:white;
+            border-radius: 12px;
         }
     </style>
     
@@ -19,11 +33,37 @@
     <!-- <%- include("./partial/header")%> -->
    <a href="/login">login</a>
    <a href="/register">register</a>
+   <a href="/adminlog">admin login</a>
     <h1>welcome ejs</h1>
     <h1>this is home page</h1>
-  <h1> welcome <%= result.name%> </h1>
-  
+    
+   
+    <%if(typeof abc != 'undefined'){%> 
+       
+        <table border="1" class="new" cellspacing="0">
+            <tr>
+                <th>name</th>
+                <th>email</th>
+                <th>age</th>
+            </tr>
 
+            <%for(var i=0; i<abc.length; i++){%>
+            <tr class="yellow">
+                <td><%= abc[i].name%></td>
+                <td><%= abc[i].email%></td>
+                <td><%= abc[i].age%></td>
+                <td><%= abc[i].gender%></td>
+                <td><button class="btn">Admit</button><td>
+                
+            </tr>
+            <%}%>
+        </table>
+    
+    
+    <%}%>
+
+
+       
     
     
     

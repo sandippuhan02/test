@@ -29,6 +29,9 @@ app.get("/register", (req, res) => {
 app.get("/login", (req, res) => {
     res.render("login");
 });
+app.get("/adminlog", (req, res) => {
+    res.render("adminlogform");
+});
 
 
 // inserting new document to our database
@@ -52,10 +55,12 @@ app.post("/register", async (req, res) => {
         });
        
         let result = await data.save();
+        let abc = await  registermodel.find();
+        // console.log(abc);
         // res.send(result);
         // console.log(result);
        
-        res.render("index",{result});
+        res.render("index",{abc});
         
        
     }
@@ -82,7 +87,21 @@ app.post("/login",async (req,res)=>{
 
          res.send("check password");
      }
+     app.post("/adminlog",(req,res)=>{
+        let formname = req.body.ainputname;
+        let formpassword = req.body.apass;
+        if(formname === "sandip" && formpassword===parseInt(123)){
 
+            res.render("admin");
+        }
+        else{
+            res.send("error");
+        }
+     })
+
+
+
+  
    
 
    
@@ -95,5 +114,5 @@ app.post("/login",async (req,res)=>{
 
 
 app.listen(3000, () => {
-    console.log("server started");
+    console.log("server started on port 3000");
 });
