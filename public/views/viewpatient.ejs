@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <h1> this is patient list</h1>
+   <!-- <% if(typeof(data) != "undefined"){%> -->
+    <table border="1" class="new" cellspacing="0">
+        <tr>
+            <th>name</th>
+            <th>email</th>
+            <th>age</th>
+            <th>gender</th>
+            <th>mobile</th>
+            <th>password</th>
+            <th>c.password</th>
+        </tr>
+
+        <%for(var i=0; i<data.length; i++){%>
+        <tr class="yellow">
+            <td><%= data[i].name%></td>
+            <td><%= data[i].email%></td>
+            <td><%= data[i].age%></td>
+            <td><%= data[i].gender%></td>
+            <td><%= data[i].mob%></td>
+            <td><%= data[i].password%></td>
+            <td><%= data[i].confirmpassword%></td>
+            <td>
+                <input type="submit" value="discharge">
+            </td>
+           
+           
+        </tr>
+        <%}%>
+    </table>
+
+    <!-- <%}%> -->
+    
+</body>
+</html>

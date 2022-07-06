@@ -14,6 +14,9 @@ const registersSchema = new mongoose.Schema({
     gender:{
        // type:String
     },
+    department:{
+        
+    },
     phone:{
         type:Number,
        // required:true,

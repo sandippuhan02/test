@@ -1,20 +1,16 @@
-const express = require("express");
-const path = require("path");
-const viewpath = path.join(__dirname,"./public/views");
-const app = express();
+let express = require("express");
+let app = express();
+require("./src/db/conn");
+const { application } = require("express");
+let doctorsModel = require("./src/models/doctor");
+let PORT = process.env.PORT || 8000;
 
-app.set("views",viewpath);
-app.set("view engine","ejs");
-
-app.get("",(req,res)=>{
-    let result = {
-        name:"sandip",
-        id:10,
-        mob:12345,
-        password:123
-    }
-    res.render("index",{result});
-})
-
-app.listen(4500,()=>console.log("port started on 4500"));
-
+app.get("/",async (req,res)=>{
+    let data = await new doctorsModel({
+        department:"radiology",
+        doctorname:"sks"
+    });
+    let result = await data.save();
+    res.send(result);
+});
+app.listen(`${PORT}`,()=>console.log("port started on"+PORT));

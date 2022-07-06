@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    .new{
+        background-color: rgb(215, 73, 92);
+         padding:10px;
+         text-align: center;
+         width:100vw;
+         height:100vh;
+         color:aliceblue;
+     }
+     .yellow{
+         background-color: darkorange;
+         color:blanchedalmond;
+         text-align: center;
+     }
+     .btn{
+         background-color: blue;
+         padding:6px;
+         color:white;
+         border-radius: 12px;
+     }
+ </style>
+</head>
+<body>
+    <h1>patient requests</h1>
+    <a href="/adminlog">back</a>
+
+    <%if(typeof abc != 'undefined'){%> 
+       
+        <table border="1" class="new" cellspacing="0">
+            <tr>
+                <th>name</th>
+                <th>email</th>
+                <th>age</th>
+            </tr>
+
+            <%for(var i=0; i<abc.length; i++){%>
+            <tr class="yellow">
+                <td><%= abc[i].name%></td>
+                <td><%= abc[i].email%></td>
+                <td><%= abc[i].age%></td>
+                <td><%= abc[i].department%></td>
+                <td><%= abc[i].gender%></td>
+               
+                <td><form action="/registers" method="post">
+                    <input type="text" name="pendingId" value=<%= abc[i]._id %> style="display: none;"/>
+                    <input type="submit" value="Insert">
+                </form></td>
+                <td><form action="/delete" method="post">
+                    <input type="text" name="pendingId" value=<%= abc[i]._id %> style="display: none;"/>
+                    <input type="submit" value="Delete">
+                </form></td>
+            </tr>
+            <%}%>
+        </table>
+    
+    
+    <%}%>
+    
+</body>
+</html>
