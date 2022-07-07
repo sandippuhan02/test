@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const doctorsSchema = new mongoose.Schema({
    department:String,
-   name:String,
+   name:Array,
   
 });
-module.exports = mongoose.model("appoints", doctorsSchema);
+module.exports = mongoose.model("doctors", doctorsSchema);
  

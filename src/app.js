@@ -13,6 +13,7 @@ console.log("current dir is " + static_path);
 const app = express();
 const registermodel = require("./models/registers");
 const pendingModel = require("./models/pending");
+const doctorsModel = require("./models/doctors");
 
 
 app.use(express.static(static_path));
@@ -112,23 +113,15 @@ app.get('/adminlog/request',async(req,res)=>{
 })
 
 
+
 /*/dummy database to original*/
 app.post('/registers',async(req,res)=>{
-    let pendingData = await pendingModel.findOne({_id:req.body.pendingId}); 
-   
-    pendingData = {
-        name : pendingData.name,
-        email : pendingData.email,
-        gender : pendingData.gender,
-        phone : pendingData.phone,
-        department:pendingData.dept,
-        age : pendingData.age,
-        password : pendingData.password
-    }
-    let newData = new registermodel(pendingData);
-    await newData.save();
+    let pendingData = await pendingModel.findOne({_id:req.body.pendingId});  
+     let ldept = pendingData.department;
+     let doctorData = await doctorsModel.findOne({depaertment:ldept});
+     console.log( doctorData);
+    res.render("approve",{pendingData,doctorData});
     await pendingModel.deleteOne({_id:req.body.pendingId});
-    res.redirect('/adminlog/request')
    
 })
 /*original data*/

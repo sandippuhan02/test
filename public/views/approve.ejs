@@ -8,7 +8,27 @@
 </head>
 <body>
     <h1>doctor appointed page</h1>
-    <%= pendingData%>
+    <hr>
+    <h3>Name:<%= pendingData.name%></h3>
+    <h3>Email:<%= pendingData.email%></h3>
+    <h3>phone:<%= pendingData.phone%></h3>
+    <h3>age:<%= pendingData.age%></h3>
+    <h3>Department:<%= pendingData.department%></h3>
+
+
+    <h3>Dotors available
+        <select name="doctors">
+
+        
+ <% for(var i=0;i<doctorData.name.length; i++){%>
+    <option value="<%= doctorData.name[i]%>">  <%= doctorData.name[i]%></option>
+    <%}%>
+</select>
+</h3>
+    
+  
+
+   
     
 </body>
 </html>
