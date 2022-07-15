@@ -36,7 +36,8 @@ const registersSchema = new mongoose.Schema({
         type:Number,
         //required:true,
 
-    }
+    },
+    doctor:String
 });
 module.exports = mongoose.model("registers", registersSchema)
  

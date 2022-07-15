@@ -107,7 +107,7 @@ app.post("/adminlog", (req, res) => {
 
 app.get('/adminlog/request',async(req,res)=>{
     let abc = await pendingModel.find();
-    console.log(abc);
+   // console.log(abc);
     // res.render('request',{abc:abc})
      res.render('request',{abc:abc}); 
 })
@@ -118,29 +118,32 @@ app.get('/adminlog/request',async(req,res)=>{
 app.post('/registers',async(req,res)=>{
     let pendingData = await pendingModel.findOne({_id:req.body.pendingId});  
      let ldept = pendingData.department;
-     let doctorData = await doctorsModel.findOne({depaertment:ldept});
+     console.log("dept is :"+ldept);
+     let doctorData = await doctorsModel.find({"department":ldept});
      console.log( doctorData);
-    res.render("approve",{pendingData,doctorData});
-    await pendingModel.deleteOne({_id:req.body.pendingId});
+   res.render("approve",{pendingData,doctorData});
    
 })
 /*original data*/
-// app.post('/registers',async(req,res)=>{
-//     let pendingData = await pendingModel.findOne({_id:req.body.pendingId}); 
-//     pendingData = {
-//         name : pendingData.name,
-//         email : pendingData.email,
-//         gender : pendingData.gender,
-//         phone : pendingData.phone,
-     
-//         age : pendingData.age,
-//         password : pendingData.password
-//     }
-//     let newData = new registermodel(pendingData);
-//     await newData.save();
-//     await pendingModel.deleteOne({_id:req.body.pendingId});
-//     res.redirect('/adminlog/request')
-// })
+app.post('/registerpatient/patient',async(req,res)=>{
+    let patientId = req.query.id;
+    let pendingData = await pendingModel.findOne({_id:patientId}); 
+    pendingData = {
+        
+        name : pendingData.name,
+        email : pendingData.email,
+        gender : pendingData.gender,
+        phone : pendingData.phone,
+        age : pendingData.age,
+        password : pendingData.password,
+        department : pendingData.department,
+        doctor:req.body.doctors
+    }
+    let newData = new registermodel(pendingData);
+    await newData.save();
+    await pendingModel.deleteOne({_id:patientId});
+    res.redirect('/adminlog/request')
+})
 
 
 app.post('/delete',async (req,res)=>{
@@ -156,6 +159,29 @@ app.get("/adminlog/vp",async(req,res)=>{
     res.render("viewpatient",{data:data});
     
  
+})
+
+/*doctor page*/
+app.get("/doclog",(req,res)=>{
+    res.render("doclog");
+})
+app.post("/doclog",async (req,res)=>{
+    let name = req.body.dname;
+    let data = await registermodel.find({doctor:name});
+    
+    res.render("showlist",{data:data});
+
+
+    
+   
+   
+
+})
+app.get("/doclog/prescribe",(req,res)=>{
+    let abc = req.query.id;
+    console.log(abc);
+
+    res.send(abc);
 })
 
 app.listen(3000, () => {

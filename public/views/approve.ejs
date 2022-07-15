@@ -7,6 +7,7 @@
     <title>doctor appointed page</title>
 </head>
 <body>
+
     <h1>doctor appointed page</h1>
     <hr>
     <h3>Name:<%= pendingData.name%></h3>
@@ -15,16 +16,19 @@
     <h3>age:<%= pendingData.age%></h3>
     <h3>Department:<%= pendingData.department%></h3>
 
-
+<form method="post" action="/registerPatient/patient?id=<%= pendingData._id%>">
     <h3>Dotors available
         <select name="doctors">
 
         
- <% for(var i=0;i<doctorData.name.length; i++){%>
-    <option value="<%= doctorData.name[i]%>">  <%= doctorData.name[i]%></option>
+ <% for(var i=0;i<doctorData.length; i++){%>
+    <option value="<%= doctorData[i].name %>">  <%= doctorData[i].name%></option>
     <%}%>
 </select>
+<input type="submit" value="Insert"/>
 </h3>
+
+</form>
     
   
 
