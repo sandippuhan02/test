@@ -167,9 +167,23 @@ app.get("/doclog",(req,res)=>{
 })
 app.post("/doclog",async (req,res)=>{
     let name = req.body.dname;
+    let password = req.body.dpass;
     let data = await registermodel.find({doctor:name});
+   
+    if( data != null)
+    {
+       if(password === "123"){
+           
+           res.render("showlist",{data:data});
+       }
+       else{
+        res.send("password not matched");
+       }
+    }
+    else{
+        res.send("username not matched");
+    }
     
-    res.render("showlist",{data:data});
 
 
     
