@@ -14,6 +14,7 @@ const app = express();
 const registermodel = require("./models/registers");
 const pendingModel = require("./models/pending");
 const doctorsModel = require("./models/doctors");
+const finalsModel = require("./models/finals");
 
 
 app.use(express.static(static_path));
@@ -196,14 +197,36 @@ app.post("/doclog/:prescribe",async (req,res)=>{
    let pdata = await registermodel.findOne({_id:req.query.id})
 
     res.render("prescribe",{pdata:pdata});
+   
 });
 
-app.post("update",async(req,res)=>{
-    let abc = await registermodel.findOne({_id:req.query.presdata});
-    console.log(abc);
-    res.send(abc);
+app.post("/update",async(req,res)=>{
+    let finalData = await registermodel.findOne({_id:req.body.presdata});
+    
+    finalData = {
+        
+        name : finalData.name,
+        email : finalData.email,
+        gender : finalData.gender,
+        phone : finalData.phone,
+        age : finalData.age,
+        password : finalData.password,
+        department : finalData.department,
+        doctor : finalData.doctor,
+        medicine:req.body.medicine
+    }
+    
+    let newData =  new finalsModel(finalData);
+      await newData.save();
+     let abc = await registermodel.deleteOne({_id:req.body.presdata});
+     
+     
+    
+   
+    
+   
 })
 
-app.listen(3000, () => {
+app.listen(6001, () => {
     console.log("server started on port 3000");
 });
