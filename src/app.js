@@ -191,10 +191,16 @@ app.post("/doclog",async (req,res)=>{
    
 
 })
-app.get("/doclog/prescribe",(req,res)=>{
-    let abc = req.query.id;
-    console.log(abc);
+app.post("/doclog/:prescribe",async (req,res)=>{
+   
+   let pdata = await registermodel.findOne({_id:req.query.id})
 
+    res.render("prescribe",{pdata:pdata});
+});
+
+app.post("update",async(req,res)=>{
+    let abc = await registermodel.findOne({_id:req.query.presdata});
+    console.log(abc);
     res.send(abc);
 })
 
